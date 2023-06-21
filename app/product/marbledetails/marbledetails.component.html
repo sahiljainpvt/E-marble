@@ -1,0 +1,52 @@
+<div class="container mt-3">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    <div *ngFor="let product of data" class="col mb-4 filter  ">
+      
+      <!-- Card-->
+      <div class="card bg-white rounded shadow-sm size" style="border:1px solid #222;">
+        <div class="card-body px-3 pt-3 pb-1 row">
+          <div class="col-7"><label class="float-left">{{ product.Name }}</label></div>
+          <div class="col-5"><label class="float-right"><span class="text-info h5">₹{{ product.Price }}</span>/sqft</label></div>
+        </div>
+        <img class="card-img-top img-fluid d-block mx-auto mb-3" style="width:239px; height:239px" src="{{ product.Image }}" alt="Card image cap">
+        <div class="card-body row">
+          <div class="col-6">
+            <div *ngFor="let cat of categorydata" >
+              <div *ngIf="cat.Id == product.CategoryId">
+                <span class="badge p-2  border w-100 opacity-75" style="background-color:rgb(66, 83, 184)">{{cat.CategoryName}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div *ngFor="let application of applications" >
+              <div *ngIf="application.Id == product.ApplicationId">
+                <span class="badge p-2 border w-100 opacity-75" style="background-color:rgb(104, 144, 179)">{{application.ApplicationName}}</span>
+              </div>
+            </div>
+          </div>
+        
+        
+        
+          <div class="col-12 pt-2" style="font-size:13px; text-align:justify">
+            <p>
+              <span style="color: rgb(0, 0, 0); font-family: 'Open Sans', sans-serif; font-size: 12px;">
+                {{ product.Shortdescription }}
+              </span>
+              <br>
+            </p>
+          </div>
+          <div class="col-12 p-1">
+            <div class="row">
+              <div class="col">
+                <button (click)="viewdetails(product.Id)" class="btn btn-success opacity-75 form-control btn-sm p-2" style="height:40px">View details</button>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

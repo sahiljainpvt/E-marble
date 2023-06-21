@@ -1,0 +1,110 @@
+<div class="container m-4">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="border p-3">
+      <div class="form-group row">
+        <h2 class="text-center text-info pl-3">Create Product</h2>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <div class="form-group row">
+            <div class="col-4">
+              <p class="text-danger"></p>
+            </div>
+            <div class="col-8"></div>
+            <div class="col-4">
+              <label for="Product_Name">Name</label>
+            </div>
+            <div class="col-8">
+              <input class="form-control" type="text" id="Product_Name" formControlName="name" />
+              <span class="text-danger field-validation-valid" *ngIf="productForm.get('name')?.invalid && (productForm.get('name')?.dirty || productForm.get('name')?.touched)">
+                The Name field is required.
+              </span>
+            </div>
+          </div>
+          <br />
+          <div class="form-group row">
+            <div class="col-4">
+              <label for="Product_Price">Price</label>
+            </div>
+            <div class="col-8">
+              <input class="form-control" type="number" id="Product_Price" formControlName="price" />
+              <span class="text-danger field-validation-valid" *ngIf="productForm.get('price')?.invalid && (productForm.get('price')?.dirty || productForm.get('price')?.touched)">
+                The field price must be a number between 1 and 2147483647.
+              </span>
+            </div>
+          </div>
+          <br />
+          <div class="form-group row">
+            <div class="col-4">
+              <label for="Product_ShortDesc">ShortDesc</label>
+            </div>
+            <div class="col-8">
+              <input class="form-control" type="text" id="Product_ShortDesc" formControlName="shortDesc" />
+            </div>
+          </div>
+          <br />
+
+          <div class="form-group row">
+            <div class="col-4">
+              <label for="Product_Description">Description</label>
+            </div>
+            <div class="col-8">
+              <textarea class="form-control summernote" id="Product_Description" formControlName="description"></textarea>
+            </div>
+          </div>
+          <br />
+          <div class="form-group row">
+            <div class="col-4">Image</div>
+            <div class="col-8">
+              <input type="file" (change)="onFileChange($event)" name="files" id="uploadBox" multiple class="form-control" />
+            </div>
+          </div>
+          <br />
+          <div class="form-group row">
+            <div class="col-4">
+              <label for="Product_CategoryId">Category Type</label>
+            </div>
+            <div class="col-8">
+              <select class="form-control" id="Product_CategoryId" formControlName="categoryId">
+                <option disabled selected>--Select Category--</option>
+                <option *ngFor="let cat of Category" [value]="cat.Id">{{ cat.CategoryName }}</option>
+              </select>
+              <span class="text-danger field-validation-valid" *ngIf="productForm.get('categoryId')?.invalid && (productForm.get('categoryId')?.dirty || productForm.get('categoryId')?.touched)">
+                The category type field is required.
+              </span>
+            </div>
+          </div>
+          <br />
+          <div class="form-group row">
+            <div class="col-4">
+              <label for="Product_ApplicationTypeId">Application Type</label>
+            </div>
+            <div class="col-8">
+              <select class="form-control" id="Product_ApplicationTypeId" formControlName="applicationTypeId">
+                <option disabled selected>--Select Application Type--</option>
+                <option *ngFor="let app of application" [value]="app.Id">{{ app.ApplicationName }}</option>
+              </select>
+              <span class="text-danger field-validation-valid" *ngIf="productForm.get('applicationTypeId')?.invalid && (productForm.get('applicationTypeId')?.dirty || productForm.get('applicationTypeId')?.touched)">
+                The application type field is required.
+              </span>
+            </div>
+          </div>
+          <br />
+          <div class="form-group row">
+            <div class="col-8 offset-4 row">
+              <div class="col">
+                <input type="submit" [disabled]="productForm.invalid" class="btn btn-primary w-100" value="Create" />
+              </div>
+              <div class="col">
+                <a class="btn btn-success w-100" [routerLink]="'/admin/displayproductlist'">
+                  <i class="fas fa-sign-out-alt"></i> Back
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4"></div>
+      </div>
+    </div>
+  </form>
+</div>

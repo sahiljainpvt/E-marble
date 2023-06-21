@@ -1,0 +1,57 @@
+<!-- app.component.html -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-success opacity-75 shadow ">
+    <b><a class="navbar-brand m-2" href="#">E-Marble</a></b>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="navbar-brand" >
+          <a class="nav-link" style="color: black;" routerLink="/">Home</a>
+        </li>
+
+        <li class="navbar-brand">
+          <a *ngIf="userservices.getuserloginstatus() && !userservices.isadmin"  class="nav-link" style="color: black;" routerLink="cart">Cart{{userservices. getcartnumber()}}</a>
+        </li>
+      <div class="collapse navbar-collapse"*ngIf="userservices.getstausofisadmin()">
+        <li  class="navbar-brand" >
+ 
+  
+    <a class="nav-link" routerLink="admin/displaycat">Category</a>
+    </li>
+    <li  class="navbar-brand" >
+ 
+    <a class="nav-link" routerLink="admin/displayapplication">Application Type</a>
+    </li>
+    <li  class="navbar-brand" >
+ 
+    <a class="nav-link" routerLink="admin/displayproductlist">Product</a>
+    </li>
+    <li  class="navbar-brand" >
+ 
+    <a class="nav-link" routerLink="admin/manage-inquiry">Manage Inquiry</a>
+    </li>
+  </div>
+        
+        
+      </ul>
+      <div class="nav-collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav ">
+        <li *ngIf="!userservices.getuserloginstatus()" class="navbar-brand ">
+          <a class="nav-link" style="color: black;" routerLink="/Register">Register</a>
+        </li>
+        <li *ngIf="!userservices.getuserloginstatus()" class="navbar-brand float-end">
+          <a  class="nav-link" style="color: black;" routerLink="/Login">Login</a>
+        </li>
+        <li *ngIf="userservices.getuserloginstatus()" class="navbar-brand float-end">
+          <a  class="nav-link" style="color: black;" (click)="logout()">Logout</a>
+        </li>
+          <li *ngIf="userservices.getuserloginstatus()" class="navbar-brand float-end">
+           <a  class="nav-link" style="color: black;">{{userservices.getUser()?.name}}</a>
+        </li>
+      </ul>
+      </div>
+    </div>
+  

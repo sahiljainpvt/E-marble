@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="container p-3">
+      <div class="row pt-4">
+        <div class="col-6">
+          <h2 class="text-primary">Inquiry List</h2>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Product Name</th>
+              <th>Status</th>
+              <th>User</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let inq of Inquiry">
+              <td>{{inq.Name}}</td>
+              <td>{{inq.Phone}}</td>
+              <div *ngFor="let pro of  Product">
+              <div *ngIf="pro.Id==inq.ProductId">
+              <td>{{pro.Name}}</td>
+             </div>
+            </div>  
+            <td>{{inq.Status}}</td>
+              <td>{{inq.Email}}</td>
+              <td>{{inq.Price}}</td>
+              <td class="text-center">
+                <div class="w-75 btn-group" role="group">
+                  <a class="btn btn-primary mx-2" [routerLink]="['/admin/updateinquirystatus',inq.Id]">
+                    <i class="fas fa-edit"></i>Edit
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  
+  
+  
+  

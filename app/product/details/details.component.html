@@ -1,0 +1,94 @@
+<div class="modal" tabindex="-1" role="dialog" id="alert">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Alert</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closemodel()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Product Added To Cart Sucessfully</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="gotohome()">Continue Shoping...</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="gotocart()">Go to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" id="removealert">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Alert</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closemodel()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Product has been removed from cart sucessfully</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="gotohome()">Continue Shoping...</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="gotocart()">Go to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="container backgroundWhite pt-2 mt-5 " style="margin-bottom:8%;"  >
+    <div class="card" style="border:1px solid #000000; ">
+        <div class="card-header bg-dark text-light m-0 row container" style="border-radius: 0px;">
+            <div class="col-12 col-md-6">
+                <h1 class="text-white">{{product.Name}}</h1>
+            </div>
+            <div class="col-12 col-md-6 text-md-end">
+                <h1 class="text-warning">
+                    {{product.Price}}/sqft
+                </h1>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="container rounded p-2">
+                <div class="row">
+                    <div class="col-12 col-lg-4 p-1 text-center">
+                        <img style="width:295px; height:196px;" src={{product.Image}} width="100%" class="rounded" />
+                    </div>
+                    <div class="col-12 col-lg-8">
+                        <div class="row pl-3">
+
+                            <div class="col-12">
+                                <span class="badge p-3 border" style="background-color:rgb(156, 58, 90)">Emperador</span>
+                                <span class="badge p-3 border" style="background-color:rgb(70, 141, 141)">Flooring</span>
+                                <h3 class="text-success"></h3>
+
+                                <p class="text-secondary">{{product.Shortdescription}} </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-dark">
+            <div class="row">
+                <div class="col-12 col-md-6 pb-1">
+                    <a [routerLink]="['/']" class="col-6 btn btn-success btn-square form-control btn-lg" style="height: 50px;">Back to List</a>
+                </div>
+                <div class="col-12 col-md-6 pb-1" *ngIf="useServices.getuserloginstatus() && !useServices.isadmin">
+                    <div *ngIf="loginstatus && status" class="d-flex justify-content-end">
+                        <button class="btn btn-info btn-square form-control btn-lg" style="height: 50px;" (click)="Addtocart(product.Id)">Add to Inquiry</button>
+                        
+                    </div>
+                    <div *ngIf="loginstatus && !status" class="d-flex justify-content-end">
+                        <button class="btn btn-warning btn-square form-control btn-lg" style="height: 50px;" (click)="removetocart(product.Id)">Remove from Inquiry</button>
+                    </div>
+
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
